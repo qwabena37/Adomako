@@ -13,10 +13,7 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-
-    """
-from django.contrib.auth import get_user_model
-from django.http import JsonResponse
+"""
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
@@ -38,33 +35,3 @@ if settings.DEBUG:
         settings.MEDIA_URL,
         document_root=settings.MEDIA_ROOT
     )
-def create_admin(request):
-
-    User = get_user_model()
-
-    if not User.objects.filter(username="Admin").exists():
-
-        User.objects.create_superuser(
-            username="Admin",
-            email="admin@adomako.com",
-            password="Adomako123."
-        )
-
-        return JsonResponse({
-            "message":"Admin created"
-        })
-
-    return JsonResponse({
-        "message":"Admin already exists"
-    })
-
-
-urlpatterns = [
-
-    path('create-admin/', create_admin),
-
-    path('admin/', admin.site.urls),
-
-    path("api/",include("products.urls")),
-
-]

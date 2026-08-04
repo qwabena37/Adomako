@@ -1,36 +1,47 @@
 from rest_framework.routers import DefaultRouter
+from django.urls import path, include
 
-from .views import (ProductViewSet, CategoryViewSet, InquiryViewSet, DashboardAPIView ) 
-from django.urls import path
+from .views import (
+    ProductViewSet,
+    CategoryViewSet,
+    InquiryViewSet,
+    DashboardAPIView
+)
+
+
 router = DefaultRouter()
 
-router.register(r'products',ProductViewSet, basename='product')
-router.register(r'categories',CategoryViewSet, basename='category')
-router.register(r'inquiries',InquiryViewSet, basename='inquiry')
 
-urlpatterns = router.urls
+router.register(
+    r"products",
+    ProductViewSet,
+    basename="product"
+)
 
-urlpatterns += [
+router.register(
+    r"categories",
+    CategoryViewSet,
+    basename="category"
+)
+
+router.register(
+    r"inquiries",
+    InquiryViewSet,
+    basename="inquiry"
+)
+
+
+urlpatterns = [
+
+    path(
+        "",
+        include(router.urls)
+    ),
+
     path(
         "dashboard/",
-        DashboardAPIView.as_view(), name="dashboard"
-    )
+        DashboardAPIView.as_view(),
+        name="dashboard"
+    ),
+
 ]
-
-
-router = DefaultRouter()
-
-router.register(
-    "products",
-    ProductViewSet
-)
-
-router.register(
-    "categories",
-    CategoryViewSet
-)
-
-router.register(
-    "inquiries",
-    InquiryViewSet
-)
