@@ -52,7 +52,7 @@ function Navbar() {
   className="flex items-center gap-3"
 >
   <img
-    src="./public/logo.jpeg"
+    src="/logo.jpeg"
     alt="Adomako Agyenkwa Enterprise"
     className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
   />

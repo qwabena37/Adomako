@@ -16,7 +16,7 @@ function Hero() {
       >
 
         <source
-          src="./src/Video/video.mp4"
+          src="/Video/video.mp4"
           type="video/mp4"
         />
 
