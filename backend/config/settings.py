@@ -121,9 +121,12 @@ CORS_ALLOWED_ORIGINS = [
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.environ.get("postgresql://adomako_agyenkwa_user:RARgpITS2NjsYy2kQLUMnTS30OupDD0h@dpg-d9p35uss728c73873jr0-a/adomako_agyenkwa")
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
     )
 }
 
