@@ -35,9 +35,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-xre5v32*%@idix-hiz=@(+u^rgvts0^$#c^_@wkl(k592c^i_v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "adomako-3.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 
 # Application definition
