@@ -6,37 +6,40 @@ function Hero() {
 
   return (
 
-    <section className="relative h-screen">
+    <section className="relative min-h-[100svh] md:h-screen overflow-hidden">
 
-      <video
-        autoPlay
-        muted
-        loop
-        className="absolute inset-0 w-full h-full object-cover"
-      >
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="metadata"
+    className="absolute inset-0 w-full h-full object-cover"
+  >
+    <source
+      src="/Video/video.mp4"
+      type="video/mp4"
+    />
+  </video>
 
-        <source
-          src="/Video/video.mp4"
-          type="video/mp4"
-        />
 
-      </video>
+  <div className="absolute inset-0 bg-black/60">
 
-      <div className="absolute inset-0 bg-black/60">
 
-        <div className="h-full flex flex-col justify-center items-center text-white">
+    <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-4">
 
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center">
+        Adomako Agyenkwa
+      </h1>
 
-            Adomako Agyenkwa
+      <p className="mt-4 text-lg sm:text-xl text-center">
+        Genuine Automobile Parts
+      </p>
 
-          </h1>
+    </div>
 
-          <p className="mt-4 text-xl">
-            Genuine Automobile Parts
-          </p>
 
-        </div>
+  
 
         {/* Partner Brands */}
 
