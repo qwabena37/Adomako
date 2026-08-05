@@ -11,6 +11,10 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE',
+                       'config.settings')
 
 application = get_wsgi_application()
+
+from .admin_setup import create_default_admin
+create_default_admin()
