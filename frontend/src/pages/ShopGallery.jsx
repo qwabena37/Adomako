@@ -15,7 +15,7 @@ function ShopGallery() {
       const response = await api.get(
         `products/?search=${search}`
       );
-
+      console.log("Gallery Response:", response.data);
       setProducts(response.data);
     } catch (error) {
       console.log(error);
@@ -26,14 +26,6 @@ function ShopGallery() {
 
   useEffect(() => {
     fetchProducts();
-      
-    const response = await api.get(
-  `products/?search=${search}`
-);
-
-console.log(response.data);
-
-setProducts(response.data);
   }, [search]);
 
   return (
