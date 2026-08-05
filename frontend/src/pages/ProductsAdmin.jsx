@@ -49,7 +49,7 @@ function ProductsAdmin() {
 
     try {
       const token =
-        localStorage.getItem("token");
+        localStorage.getItem("access");
 
       const data = new FormData();
 
@@ -120,7 +120,7 @@ function ProductsAdmin() {
 
     try {
       const token =
-        localStorage.getItem("token");
+        localStorage.getItem("access");
 
       await api.delete(
         `products/${id}/`,
