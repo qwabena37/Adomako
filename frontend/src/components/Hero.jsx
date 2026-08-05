@@ -58,35 +58,35 @@ function Hero() {
       <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
         <FaCarSide className="text-white text-xs sm:text-sm md:text-base" />
         <span className="font-semibold text-white text-xs sm:text-sm md:text-base">
-          Honda
+          GENESIS
         </span>
       </div>
 
       <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
         <FaCarSide className="text-white text-xs sm:text-sm md:text-base" />
         <span className="font-semibold text-white text-xs sm:text-sm md:text-base">
-          Toyota
+          KIA
         </span>
       </div>
 
       <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
         <FaCarSide className="text-white text-xs sm:text-sm md:text-base" />
         <span className="font-semibold text-white text-xs sm:text-sm md:text-base">
-          SsangYong
+          SSANGYONG
         </span>
       </div>
 
       <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
         <FaCarSide className="text-white text-xs sm:text-sm md:text-base" />
         <span className="font-semibold text-white text-xs sm:text-sm md:text-base">
-          Volvo
+          HYUNDAI
         </span>
       </div>
 
       <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
         <FaCarSide className="text-white text-xs sm:text-sm md:text-base" />
         <span className="font-semibold text-white text-xs sm:text-sm md:text-base">
-          Mercedes-Benz
+          DAEWOO
         </span>
       </div>
 
