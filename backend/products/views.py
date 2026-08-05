@@ -4,6 +4,10 @@ from .serializers import (
     CategorySerializer,
     InquirySerializer
 )
+from rest_framework.parsers import (
+    MultiPartParser,
+    FormParser
+)
 from .models import Inquiry, Product, Category, Inquiry 
 from .serializers import CategorySerializer, InquirySerializer, ProductSerializer
 from rest_framework.views import APIView
@@ -15,29 +19,32 @@ from rest_framework.permissions import BasePermission
 
 class ProductViewSet(viewsets.ModelViewSet):
 
-    queryset=Product.objects.all()
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [IsAdminOrReadOnly]
-    serializer_class=ProductSerializer
+
+    parser_classes = (
+        MultiPartParser,
+        FormParser,
+    )
 
     def get_serializer_context(self):
-        return({"request": self.request}) 
-    
+        return {"request": self.request}
+
     search_fields = [
-    'name',
-    'description'
-]
+        "name",
+        "description"
+    ]
 
     filterset_fields = [
-    'category',
-    'featured'
-]
+        "category",
+        "featured"
+    ]
 
     ordering_fields = [
-    'created_at',
-    'price'
-]
+        "created_at",
+        "price"
+    ]
 
 class IsAdminOrReadOnly(BasePermission):
 

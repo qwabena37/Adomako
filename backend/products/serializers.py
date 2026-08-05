@@ -3,30 +3,36 @@ from .models import Product, Category, Inquiry
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    image = serializers.SerializerMethodField()
+
+    image = serializers.ImageField(
+        required=False,
+        use_url=True
+    )
 
     class Meta:
         model = Product
         fields = "__all__"
 
-    def get_image(self, obj):
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+
         request = self.context.get("request")
 
-        if obj.image:
-            return request.build_absolute_uri(obj.image.url)
+        if instance.image and request:
+            data["image"] = request.build_absolute_uri(
+                instance.image.url
+            )
 
-        return None
+        return data
 
 
 class CategorySerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Category
         fields = "__all__"
 
 
 class InquirySerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Inquiry
         fields = "__all__"
