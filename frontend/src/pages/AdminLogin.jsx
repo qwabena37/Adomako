@@ -13,19 +13,23 @@ function AdminLogin() {
 
 
   const login = async (e) => {
+  e.preventDefault();
 
-    e.preventDefault();
+  console.log("VITE_API_URL =", import.meta.env.VITE_API_URL);
 
+  console.log(
+    "LOGIN URL =",
+    `${import.meta.env.VITE_API_URL}/api/token/`
+  );
 
-    try {
-
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/token/`,
-        {
-          username,
-          password,
-        }
-      );
+  try {
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_URL}/api/token/`,
+      {
+        username,
+        password,
+      }
+    );
 
 
       localStorage.setItem(
