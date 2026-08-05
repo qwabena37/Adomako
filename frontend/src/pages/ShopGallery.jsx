@@ -165,12 +165,16 @@ function ShopGallery() {
                 >
 
                   <img
- src={
-   product.image.startsWith("http")
-   ? product.image
-   : `https://adomako-3.onrender.com/${product.image}`
- }
- alt={product.name}
+  src={product.image}
+  alt={product.name}
+  className="
+    h-28
+    sm:h-40
+    md:h-48
+    lg:h-56
+    w-full
+    object-cover
+  "
 />
 
                   <div className="p-2 sm:p-3 md:p-4">
