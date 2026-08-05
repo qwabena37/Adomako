@@ -13,7 +13,7 @@ function AdminLogin() {
 
     try {
       const response = await axios.post(
-        "https://adomako-3.onrender.com/",
+        "https://adomako-3.onrender.com/api/token/",
         {
           username,
           password,
@@ -23,7 +23,7 @@ function AdminLogin() {
       localStorage.setItem(
   "access",
   response.data.access
-); 
+);
 
 localStorage.setItem(
   "refresh",
