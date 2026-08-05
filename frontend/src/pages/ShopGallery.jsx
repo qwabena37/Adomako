@@ -168,7 +168,7 @@ function ShopGallery() {
  src={
    product.image.startsWith("http")
    ? product.image
-   : `https://adomako-3.onrender.com/media/${product.image}`
+   : `https://adomako-3.onrender.com/${product.image}`
  }
  alt={product.name}
 />
