@@ -6,7 +6,7 @@ function Hero() {
 
   return (
 
-    <section className="relative min-h-[100svh] md:h-screen overflow-hidden">
+    <section className="relative h-[85vh] sm:h-[90vh] md:h-screen overflow-hidden">
 
   <video
     autoPlay
@@ -14,7 +14,7 @@ function Hero() {
     loop
     playsInline
     preload="metadata"
-    className="absolute inset-0 w-full h-full object-cover"
+    className="absolute inset-0 w-full h-full object-cover scale-105"
   >
     <source
       src="/Video/video.mp4"
