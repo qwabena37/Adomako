@@ -1,21 +1,17 @@
 from rest_framework import serializers
-from .models import Category, Inquiry, Product
+from .models import Product, Category, Inquiry
 
 class ProductSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
 
     class Meta:
-        model=Product
-        fields='__all__'
-
-class CategorySerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Category
+        model = Product
         fields = "__all__"
 
-class InquirySerializer(serializers.ModelSerializer):
+    def get_image(self, obj):
+        request = self.context.get("request")
 
-    class Meta:
-        model = Inquiry
-        fields = "__all__"
+        if obj.image:
+            return request.build_absolute_uri(obj.image.url)
 
+        return None

@@ -16,14 +16,14 @@ from rest_framework.permissions import BasePermission
 class ProductViewSet(viewsets.ModelViewSet):
 
     queryset=Product.objects.all()
-
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-
     permission_classes = [IsAdminOrReadOnly]
-
     serializer_class=ProductSerializer
 
+    def get_serializer_context(self):
+        return({"request": self.request}) 
+    
     search_fields = [
     'name',
     'description'
