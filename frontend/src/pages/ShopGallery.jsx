@@ -26,6 +26,13 @@ function ShopGallery() {
 
   useEffect(() => {
     fetchProducts();
+      const response = await api.get(
+  `products/?search=${search}`
+);
+
+console.log("Products:", response.data);
+
+setProducts(response.data);
   }, [search]);
 
   return (
