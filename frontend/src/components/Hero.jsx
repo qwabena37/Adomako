@@ -25,8 +25,8 @@ function Hero() {
         {/* Hero Content */}
         <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-4 z-20">
 
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center">
-            Welcome To Adomako Agyenkwa
+          <h1 className="text-2xl text-gray-300 sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center">
+            Welcome To Adomako Agyenkwa Enterprise
           </h1>
 
           <p className="mt-4 text-lg sm:text-xl text-center">
