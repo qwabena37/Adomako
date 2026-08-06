@@ -90,7 +90,7 @@ function ProductDetails() {
           : `http://127.0.0.1:8000${product.image}`
       }
       alt={product.name}
-      className="max-w-full max-h-full object-contain rounded-2xl"
+      className="max-w-full max-h-full rounded-2xl object-contain rounded-2xl"
       onError={(e) => {
         console.log("Failed image:", e.target.src);
       }}
