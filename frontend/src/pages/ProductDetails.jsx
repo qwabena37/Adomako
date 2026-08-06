@@ -81,19 +81,23 @@ function ProductDetails() {
           <div className="grid lg:grid-cols-2 gap-10">
 
             <div className="p-6">
-              <img
-  src={
-    product.image?.startsWith("http")
-      ? product.image
-      : `http://127.0.0.1:8000${product.image}`
-  }
-  alt={product.name}
-  className="w-full h-[500px] object-cover rounded-xl"
-  onError={(e) => {
-    console.log("Failed image:", e.target.src);
-  }}
-/>
-            </div>
+  <div className="bg-gray-50 rounded-2xl overflow-hidden flex items-center justify-center h-[300px] sm:h-[400px] lg:h-[500px]">
+
+    <img
+      src={
+        product.image?.startsWith("http")
+          ? product.image
+          : `http://127.0.0.1:8000${product.image}`
+      }
+      alt={product.name}
+      className="max-w-full max-h-full object-contain rounded-2xl"
+      onError={(e) => {
+        console.log("Failed image:", e.target.src);
+      }}
+    />
+
+  </div>
+</div>
 
             <div className="p-8 flex flex-col justify-center">
 
