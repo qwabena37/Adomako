@@ -125,7 +125,7 @@ function Home() {
     <img
       src={product.image}
       alt={product.name}
-      className="max-h-full max-w-full object-contain"
+      className="max-h-full max-w-full object-contain rounded-2xl"
     />
 
   </div>
