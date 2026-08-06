@@ -120,7 +120,7 @@ function Home() {
 >
 
   {/* Image Container */}
-  <div className="bg-gray-50 flex items-center justify-center p-2 h-48 sm:h-56 md:h-60">
+  <div className="bg-gray-50 rounded-2xl flex items-center justify-center p-2 h-48 sm:h-56 md:h-60">
 
     <img
       src={product.image}
