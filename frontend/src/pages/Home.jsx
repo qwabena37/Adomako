@@ -115,51 +115,58 @@ function Home() {
             {featuredProducts.map((product) => (
 
               <div
-                key={product.id}
-                className="bg-gray-50 flex items-center justify-center p-2 h-48 sm:h-56 md:h-60"
-              >
+  key={product.id}
+  className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300"
+>
 
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="max-h-full max-w-full object-contain"
-                />
+  {/* Image Container */}
+  <div className="bg-gray-50 flex items-center justify-center p-2 h-48 sm:h-56 md:h-60">
 
-                <div className="p-5">
+    <img
+      src={product.image}
+      alt={product.name}
+      className="max-h-full max-w-full object-contain"
+    />
 
-                  <h3 className="text-xl font-bold mb-2">
-                    {product.name}
-                  </h3>
+  </div>
 
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                    {product.description}
-                  </p>
+  {/* Product Details */}
+  <div className="p-5">
 
-                  <div className="flex justify-between items-center mb-4">
+    <h3 className="text-lg font-bold mb-2">
+      {product.name}
+    </h3>
 
-                    <span className="text-yellow-600 font-bold text-lg">
-                      GH₵ {product.price}
-                    </span>
+    <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+      {product.description}
+    </p>
 
-                    <span className="text-xs bg-gray-100 px-3 py-1 rounded-full">
-                      Category {product.category}
-                    </span>
+    <div className="flex justify-between items-center mb-4">
 
-                  </div>
+      <span className="text-yellow-600 font-bold text-lg">
+        GH₵ {product.price}
+      </span>
 
-                  <a
-                    href={`https://wa.me/233243160227?text=Hello Adomako Agyenkwa Enterprise, I am interested in ${encodeURIComponent(
-                      product.name
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-center bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition duration-300"
-                  >
-                    Inquire on WhatsApp
-                  </a>
+      <span className="text-xs bg-gray-100 px-3 py-1 rounded-full">
+        Category {product.category}
+      </span>
 
-                </div>
-              </div>
+    </div>
+
+    <a
+      href={`https://wa.me/233243160227?text=Hello Adomako Agyenkwa Enterprise, I am interested in ${encodeURIComponent(
+        product.name
+      )}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block text-center bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition duration-300"
+    >
+      Inquire on WhatsApp
+    </a>
+
+  </div>
+
+</div>
 
             ))}
 
