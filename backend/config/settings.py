@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
-
+import dj_database_url
+import os
 from pathlib import Path
 from datetime import timedelta
 
@@ -115,10 +116,10 @@ CORS_ALLOWED_ORIGINS = [
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default": dj_database_url.config(
+        default=os.environ.get("postgresql://adomako_agyenkwa_user:RARgpITS2NjsYy2kQLUMnTS30OupDD0h@dpg-d9p35uss728c73873jr0-a/adomako_agyenkwa"),
+        conn_max_age=600,
+    )
 }
 
 

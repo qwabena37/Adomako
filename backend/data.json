@@ -1,0 +1,134 @@
+[
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$ayuvPYtIln9ULignXPFTMM$4G+I7EffTHrNC1A/S6/8UdYhZOToLVbsmTRH8JYGVTw=",
+        "last_login": "2026-08-03T17:32:09.077Z",
+        "is_superuser": true,
+        "username": "Admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-08-03T17:30:46.676Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$UloSHDTGLEfNNwyli9sase$z2Sy+sX08/2S/tt+D7kC7yA6N28qG3GvP6FGtAWmZcY=",
+        "last_login": null,
+        "is_superuser": true,
+        "username": "James",
+        "first_name": "",
+        "last_name": "",
+        "email": "qjaymce37@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-08-05T12:21:48.885Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ysei2xpeccfy7qa3jki3d48978af59k3",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4pcx0mhIzvfELmxQwqolfqYEP-OKnWA9e50b0iyrTVti81pUOiggdMv6yU_bdyFPmS8Ty5P4zoPvdsTd9jF3Sa11_Vo_wZVlgodnL1pvBBmLOhJWDRYS-wtcFBvpNyjxLYhU45SmLyPWKhgZIuiAp8v1cA3tQ:1wqwWH:SqprUMZwF5mD14kfWhd9kD1nz74NL-n53BVc4vJgcdo",
+        "expire_date": "2026-08-17T17:32:09.202Z"
+    }
+},
+{
+    "model": "products.category",
+    "pk": 1,
+    "fields": {
+        "name": "Toyota",
+        "logo": ""
+    }
+},
+{
+    "model": "products.category",
+    "pk": 2,
+    "fields": {
+        "name": "Benz",
+        "logo": ""
+    }
+},
+{
+    "model": "products.category",
+    "pk": 3,
+    "fields": {
+        "name": "Honda",
+        "logo": ""
+    }
+},
+{
+    "model": "products.category",
+    "pk": 4,
+    "fields": {
+        "name": "BMW",
+        "logo": ""
+    }
+},
+{
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+        "category": 1,
+        "name": "Mic",
+        "description": "phone",
+        "image": "products/android.PNG",
+        "price": "3.00",
+        "stock": 5,
+        "featured": false,
+        "created_at": "2026-08-03T21:28:35.651Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+        "category": 1,
+        "name": "Gear",
+        "description": "Gear for Toyota Vitz",
+        "image": "products/charger.PNG",
+        "price": "56.00",
+        "stock": 12,
+        "featured": true,
+        "created_at": "2026-08-03T21:37:33.180Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+        "category": 3,
+        "name": "Large Gasket",
+        "description": "Gasket for mini vehicle",
+        "image": "products/lenovo_24.PNG",
+        "price": "56.00",
+        "stock": 178,
+        "featured": true,
+        "created_at": "2026-08-03T23:59:20.202Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+        "category": 4,
+        "name": "Absorber",
+        "description": "BMW Absorber",
+        "image": "products/pink.PNG",
+        "price": "670.00",
+        "stock": 860,
+        "featured": true,
+        "created_at": "2026-08-04T00:02:58.235Z"
+    }
+}
+]
