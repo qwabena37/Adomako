@@ -1,112 +1,96 @@
-import {
-  FaCarSide
-} from "react-icons/fa";
+import { FaCarSide } from "react-icons/fa";
 
 function Hero() {
-
   return (
+    <section className="relative h-[75vh] sm:h-[85vh] md:h-screen overflow-hidden bg-black">
 
-  <section className="relative h-[100svh] md:h-screen overflow-hidden bg-black">
+      {/* Background Video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+      >
+        <source
+          src="/Video/video.mp4"
+          type="video/mp4"
+        />
+      </video>
 
-  <video
-    autoPlay
-    muted
-    loop
-    playsInline
-    preload="metadata"
-    className="
-      absolute 
-      inset-0 
-      w-full 
-      h-full 
-      object-cover 
-      object-center
-      scale-[1.15]
-      sm:scale-105
-    "
-  >
-    <source src="/Video/video.mp4" type="video/mp4" />
-  </video>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60 z-10">
 
+        {/* Hero Content */}
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-4 z-20">
 
-  <div className="absolute inset-0 bg-black/60 z-10">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center">
+            Welcome To Adomako Agyenkwa
+          </h1>
 
-    <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-4 z-20">
+          <p className="mt-4 text-lg sm:text-xl text-center">
+            Genuine Automobile Parts
+          </p>
 
-      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center">
-        Welcome To Adomako Agyenkwa
-      </h1>
-
-      <p className="mt-4 text-lg sm:text-xl text-center">
-        Genuine Automobile Parts
-      </p>
-
-    </div>
-
-
-  
+        </div>
 
         {/* Partner Brands */}
+        <div className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-sm py-3 z-20">
 
-<div className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-sm py-3">
+          <div className="max-w-7xl mx-auto px-2 sm:px-4">
 
-  <div className="max-w-7xl mx-auto px-2 sm:px-4">
+            <p className="text-center text-gray-300 text-[10px] sm:text-xs uppercase tracking-widest mb-2">
+              Trusted Automobile Brands
+            </p>
 
-    <p className="text-center text-gray-300 text-[10px] sm:text-xs uppercase tracking-widest mb-2">
+            <div className="flex justify-center items-center gap-3 sm:gap-5 md:gap-8 overflow-x-auto whitespace-nowrap scrollbar-hide">
 
-      Trusted Automobile Brands
+              <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                <FaCarSide className="text-white text-xs sm:text-sm md:text-base" />
+                <span className="font-semibold text-white text-xs sm:text-sm md:text-base">
+                  GENESIS
+                </span>
+              </div>
 
-    </p>
+              <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                <FaCarSide className="text-white text-xs sm:text-sm md:text-base" />
+                <span className="font-semibold text-white text-xs sm:text-sm md:text-base">
+                  KIA
+                </span>
+              </div>
 
-    <div className="flex justify-center items-center gap-3 sm:gap-5 md:gap-8 overflow-x-auto whitespace-nowrap scrollbar-hide">
+              <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                <FaCarSide className="text-white text-xs sm:text-sm md:text-base" />
+                <span className="font-semibold text-white text-xs sm:text-sm md:text-base">
+                  SSANGYONG
+                </span>
+              </div>
 
-      <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-        <FaCarSide className="text-white text-xs sm:text-sm md:text-base" />
-        <span className="font-semibold text-white text-xs sm:text-sm md:text-base">
-          GENESIS
-        </span>
-      </div>
+              <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                <FaCarSide className="text-white text-xs sm:text-sm md:text-base" />
+                <span className="font-semibold text-white text-xs sm:text-sm md:text-base">
+                  HYUNDAI
+                </span>
+              </div>
 
-      <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-        <FaCarSide className="text-white text-xs sm:text-sm md:text-base" />
-        <span className="font-semibold text-white text-xs sm:text-sm md:text-base">
-          KIA
-        </span>
-      </div>
+              <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                <FaCarSide className="text-white text-xs sm:text-sm md:text-base" />
+                <span className="font-semibold text-white text-xs sm:text-sm md:text-base">
+                  DAEWOO
+                </span>
+              </div>
 
-      <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-        <FaCarSide className="text-white text-xs sm:text-sm md:text-base" />
-        <span className="font-semibold text-white text-xs sm:text-sm md:text-base">
-          SSANGYONG
-        </span>
-      </div>
+            </div>
 
-      <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-        <FaCarSide className="text-white text-xs sm:text-sm md:text-base" />
-        <span className="font-semibold text-white text-xs sm:text-sm md:text-base">
-          HYUNDAI
-        </span>
-      </div>
+          </div>
 
-      <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-        <FaCarSide className="text-white text-xs sm:text-sm md:text-base" />
-        <span className="font-semibold text-white text-xs sm:text-sm md:text-base">
-          DAEWOO
-        </span>
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
+        </div>
 
       </div>
 
     </section>
-
-  )
-
+  );
 }
 
 export default Hero;
