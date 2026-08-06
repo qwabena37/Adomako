@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   FaBars,
@@ -11,6 +11,8 @@ import {
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [time, setTime] = useState("");
+
+  const menuRef = useRef(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -32,6 +34,33 @@ function Navbar() {
     return () => clearInterval(timer);
   }, []);
 
+  // Close menu when touching/clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        open &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target)
+      ) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+
+    return () => {
+      document.removeEventListener(
+        "mousedown",
+        handleClickOutside
+      );
+      document.removeEventListener(
+        "touchstart",
+        handleClickOutside
+      );
+    };
+  }, [open]);
+
   return (
     <>
       {/* Top Date & Time Bar */}
@@ -45,52 +74,51 @@ function Navbar() {
 
           <div className="flex justify-between items-center h-20">
 
-            
-{/* Logo */}
-<Link
-  to="/"
-  className="flex items-center gap-3"
->
-  <img
-    src="/logo.jpeg"
-    alt="Adomako Agyenkwa Enterprise"
-    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
-  />
+            {/* Logo */}
+            <Link
+              to="/"
+              className="flex items-center gap-3"
+            >
+              <img
+                src="/logo.jpeg"
+                alt="Adomako Agyenkwa Enterprise"
+                className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
+              />
 
-  <div>
-    <h1 className="font-bold text-sm sm:text-base md:text-lg">
-      Adomako Agyenkwa
-    </h1>
+              <div>
+                <h1 className="font-bold text-sm sm:text-base md:text-lg">
+                  Adomako Agyenkwa
+                </h1>
 
-    <p className="text-xs text-gray-400">
-      Genuine Automobile Parts
-    </p>
-  </div>
-</Link>
+                <p className="text-xs text-gray-400">
+                  Genuine Automobile Parts
+                </p>
+              </div>
+            </Link>
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center gap-8">
 
-              <a
-                href="/"
+              <Link
+                to="/"
                 className="hover:text-yellow-400 transition duration-300"
               >
                 Home
-              </a>
+              </Link>
 
-              <a
-                href="/gallery"
+              <Link
+                to="/gallery"
                 className="hover:text-yellow-400 transition duration-300"
               >
                 Shop Gallery
-              </a>
+              </Link>
 
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="hover:text-yellow-400 transition duration-300"
               >
                 Contact
-              </a>
+              </Link>
 
               <a
                 href="https://wa.me/233243160227"
@@ -120,85 +148,98 @@ function Navbar() {
         </div>
 
         {/* Mobile Menu */}
-        {open && (
-  <div className="md:hidden absolute top-full right-0 w-72 bg-slate-900 border-l border-slate-800 shadow-2xl">
+        <div
+          ref={menuRef}
+          className={`md:hidden absolute top-full right-4 mt-3 w-72
+          backdrop-blur-xl bg-slate-900/85
+          border border-slate-700/50
+          rounded-2xl shadow-2xl
+          transition-all duration-300 ease-out z-50
+          ${
+            open
+              ? "opacity-100 translate-y-0 visible"
+              : "opacity-0 -translate-y-4 invisible"
+          }`}
+        >
 
-    <div className="px-6 py-6 flex flex-col gap-4">
+          <div className="px-6 py-6 flex flex-col gap-4">
 
-      <Link
-        to="/"
-        className="hover:text-yellow-400"
-        onClick={() => setOpen(false)}
-      >
-        Home
-      </Link>
+            <Link
+              to="/"
+              className="hover:text-yellow-400 transition duration-300"
+              onClick={() => setOpen(false)}
+            >
+              Home
+            </Link>
 
-      <Link
-        to="/gallery"
-        className="hover:text-yellow-400"
-        onClick={() => setOpen(false)}
-      >
-        Shop Gallery
-      </Link>
+            <Link
+              to="/gallery"
+              className="hover:text-yellow-400 transition duration-300"
+              onClick={() => setOpen(false)}
+            >
+              Shop Gallery
+            </Link>
 
-      <Link
-        to="/contact"
-        className="hover:text-yellow-400"
-        onClick={() => setOpen(false)}
-      >
-        Contact
-      </Link>
+            <Link
+              to="/contact"
+              className="hover:text-yellow-400 transition duration-300"
+              onClick={() => setOpen(false)}
+            >
+              Contact
+            </Link>
 
-      <a
-        href="https://wa.me/233243160227"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="bg-yellow-500 text-black text-center py-3 rounded-lg font-semibold"
-      >
-        Inquire Product
-      </a>
+            <a
+              href="https://wa.me/233243160227"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-yellow-500 hover:bg-yellow-600 text-black text-center py-3 rounded-lg font-semibold transition duration-300"
+              onClick={() => setOpen(false)}
+            >
+              Inquire Product
+            </a>
 
-      <div className="border-t border-slate-700 pt-4">
+            <div className="border-t border-slate-700 pt-4">
 
-        <p className="text-sm text-gray-400 mb-3">
-          Follow Us
-        </p>
+              <p className="text-sm text-gray-400 mb-3">
+                Follow Us
+              </p>
 
-        <div className="flex gap-5 text-xl">
-          
-<a
-    href="https://www.facebook.com/share/1Bt5WLnWZm/?mibextid=wwXIfr"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="hover:text-yellow-400 transition duration-300"
-  >
-    <FaFacebook />
-  </a>
-          <a
-            href="https://www.instagram.com/adomako_agyenkwa_enterprise?igsh=MW05aXdqMndtaHVseA=="
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-yellow-400 transition duration-300"
-          >
-            <FaInstagram />
-          </a>
-          <a
-            href="https://www.tiktok.com/@adomako_agyenkwa_ent?is_from_webapp=1&sender_device=pc"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-yellow-400 transition duration-300"
-          >
-            <FaTiktok />
-          </a>
+              <div className="flex gap-5 text-xl">
+
+                <a
+                  href="https://www.facebook.com/share/1Bt5WLnWZm/?mibextid=wwXIfr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-yellow-400 transition duration-300"
+                >
+                  <FaFacebook />
+                </a>
+
+                <a
+                  href="https://www.instagram.com/adomako_agyenkwa_enterprise?igsh=MW05aXdqMndtaHVseA=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-yellow-400 transition duration-300"
+                >
+                  <FaInstagram />
+                </a>
+
+                <a
+                  href="https://www.tiktok.com/@adomako_agyenkwa_ent?is_from_webapp=1&sender_device=pc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-yellow-400 transition duration-300"
+                >
+                  <FaTiktok />
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
 
         </div>
-
-      </div>
-
-    </div>
-
-  </div>
-)}
 
       </nav>
     </>
@@ -206,4 +247,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
