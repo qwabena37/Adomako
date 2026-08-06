@@ -89,12 +89,12 @@ function Home() {
         </div>
       </section>
 
-      {/* Featured Products Section */}
+      {/* Products in Stock Section */}
       <section className="max-w-7xl mx-auto px-4 py-20">
 
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold">
-            Featured Products
+            Products in Stock
           </h2>
 
           <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
