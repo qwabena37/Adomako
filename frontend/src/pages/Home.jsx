@@ -110,19 +110,19 @@ function Home() {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
 
             {featuredProducts.map((product) => (
 
               <div
                 key={product.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300"
+                className="bg-gray-50 flex items-center justify-center p-2 h-48 sm:h-56 md:h-60"
               >
 
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="h-60 w-full object-cover"
+                  className="max-h-full max-w-full object-contain"
                 />
 
                 <div className="p-5">
