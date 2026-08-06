@@ -122,7 +122,7 @@ CORS_ALLOWED_ORIGINS = [
 
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.environ.get("postgresql://adomako_agyenkwa_user:RARgpITS2NjsYy2kQLUMnTS30OupDD0h@dpg-d9p35uss728c73873jr0-a/adomako_agyenkwa"),
+        default=os.environ.get("DATABASE_URL"),
         conn_max_age=600,
     )
 }
@@ -134,9 +134,14 @@ CLOUDINARY_STORAGE = {
 }
 
 
-DEFAULT_FILE_STORAGE = (
-    "cloudinary_storage.storage.MediaCloudinaryStorage"
-)
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -187,9 +192,3 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-STATICFILES_STORAGE = (
-    "whitenoise.storage.CompressedManifestStaticFilesStorage"
-)
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
