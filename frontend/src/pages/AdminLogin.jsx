@@ -38,7 +38,7 @@ localStorage.setItem(
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center">
+    <div className="min-h-screen flex justify-center items-start pt-10">
 
       <form
         onSubmit={login}
@@ -64,7 +64,7 @@ localStorage.setItem(
         />
 
         <button
-          className="w-full bg-yellow-500 text-white py-3 rounded"
+          className="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-3 rounded"
         >
           Login
         </button>

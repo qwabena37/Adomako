@@ -25,20 +25,16 @@ function Hero() {
       sm:scale-105
     "
   >
-    <source
-      src="/Video/video.mp4"
-      type="video/mp4"
-    />
+    <source src="/Video/video.mp4" type="video/mp4" />
   </video>
 
 
-  <div className="absolute inset-0 bg-black/60">
+  <div className="absolute inset-0 bg-black/60 z-10">
 
-
-    <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-4">
+    <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-4 z-20">
 
       <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center">
-        Adomako Agyenkwa
+        Welcome To Adomako Agyenkwa
       </h1>
 
       <p className="mt-4 text-lg sm:text-xl text-center">
