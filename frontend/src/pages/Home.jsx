@@ -5,19 +5,31 @@ import api from "../services/api";
 
 function Home() {
   const [featuredProducts, setFeaturedProducts] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    api
-      .get("products/")
-      .then((res) => {
-        const featured = res.data
-          .filter((product) => product.featured === true)
-          .slice(0, 10);
 
-        setFeaturedProducts(featured);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  api
+    .get("products/")
+    .then((res) => {
+
+      const featured = res.data
+        .filter((product) => product.featured === true)
+        .slice(0,10);
+
+      setFeaturedProducts(featured);
+
+    })
+
+    .catch((err)=>{
+      console.log(err);
+    })
+
+    .finally(()=>{
+      setLoading(false);
+    });
+
+
+}, []);
 
   return (
     <div>
@@ -103,7 +115,29 @@ function Home() {
           </p>
         </div>
 
-        {featuredProducts.length === 0 ? (
+        {loading ? (
+
+<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+
+{
+[1,2,3,4,5].map((item)=>(
+<div
+key={item}
+className="
+h-72
+bg-gray-200
+animate-pulse
+rounded-2xl
+"
+>
+</div>
+))
+}
+
+</div>
+
+
+) : featuredProducts.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-gray-500 text-lg">
               No featured products available at the moment.
@@ -120,11 +154,21 @@ function Home() {
 >
 
   {/* Image Container */}
-  <div className="bg-gray-50 rounded-2xl flex items-center justify-center p-2 h-48 sm:h-56 md:h-60">
+  <div 
+className="
+bg-gray-100
+rounded-2xl
+overflow-hidden
+flex
+items-center
+justify-center
+p-3
+h-48 sm:h-56 md:h-60">
 
     <img
-      src={product.image}
-      alt={product.name}
+src={product.image}
+alt={product.name}
+loading="lazy"
       className="max-h-full max-w-full object-contain rounded-2xl"
     />
 
