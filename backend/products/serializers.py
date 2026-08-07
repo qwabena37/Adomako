@@ -13,6 +13,18 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = "__all__"
 
+class ProductHomeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Product
+        fields = [
+            "id",
+            "name",
+            "image",
+            "price",
+            "description",
+            "featured"
+        ]
 
 class CategorySerializer(serializers.ModelSerializer):
 

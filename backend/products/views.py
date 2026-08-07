@@ -1,4 +1,7 @@
 from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
+
 from .serializers import (
     ProductSerializer,
     CategorySerializer,
@@ -22,6 +25,27 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [IsAdminOrReadOnly]
+
+    @action(
+        detail=False,
+        methods=["get"],
+        url_path="featured"
+    )
+    def featured_products(self, request):
+
+        products = Product.objects.filter(
+            featured=True
+        )[:10]
+
+        serializer = ProductSerializer(
+            products,
+            many=True,
+            context={
+                "request": request
+            }
+        )
+
+        return Response(serializer.data)
 
     parser_classes = (
         MultiPartParser,
