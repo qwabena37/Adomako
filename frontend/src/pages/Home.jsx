@@ -116,24 +116,23 @@ function Home() {
   <div className="grid md:grid-cols-2 gap-8">
 
     {/* 11 Plates Battery */}
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition duration-300">
-
+    <div className="relative bg-gray-100 h-96 overflow-hidden">
+ 
       <div className="relative bg-gray-50 p-6 flex items-center justify-center h-80">
 
-        <span className="absolute top-4 left-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
-          ORIGINAL BATTERY
-        </span>
+          <span className="absolute top-4 left-4 z-10 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+    ORIGINAL BATTERY
+  </span>
 
         <img
           src="/images/battery-11plates.jpeg"
           alt="Peniel View Battery 11 Plates"
-          className="max-h-full max-w-full object-contain rounded-2xl"
-        />
+    className="w-full h-full object-cover rounded-t-2xl hover:scale-105 transition duration-500"/> 
 
       </div>
 
-      <div className="p-6 text-center">
-
+      <div className="relative bg-gray-100 h-96 overflow-hidden">
+ 
         <h3 className="text-2xl font-bold mb-2">
           Peniel View Battery – 11 Plates
         </h3>
@@ -164,16 +163,16 @@ function Home() {
     {/* 15  Plates Battery */}
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition duration-300">
 
-      <div className="relative bg-gray-50 p-6 flex items-center justify-center h-80">
+      <div className="relative bg-gray-100 h-96 overflow-hidden">
 
-        <span className="absolute top-4 left-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
-          ORIGINAL BATTERY
-        </span>
+        <span className="absolute top-4 left-4 z-10 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+    ORIGINAL BATTERY
+  </span>
 
         <img
           src="/images/battery-15plates.jpeg"
           alt="Peniel View Battery 15 Plates"
-          className="max-h-full max-w-full object-contain rounded-2xl"
+          className="w-full h-full object-cover rounded-t-2xl hover:scale-105 transition duration-500"
         />
 
       </div>
