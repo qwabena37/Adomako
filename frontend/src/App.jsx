@@ -6,6 +6,7 @@ import AdminLogin from "./pages/AdminLogin";
 import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
 import Home from "./pages/Home";
+import ScrollTop from "./components/ScrollTop";
 import ProductsAdmin from "./pages/ProductsAdmin";
 import ProductDetails from "./pages/ProductDetails";
 import ShopGallery from "./pages/ShopGallery";
@@ -15,7 +16,7 @@ import InquiriesAdmin from "./pages/InquiriesAdmin";
 function App() {
   return (
     <BrowserRouter>
-
+       <ScrollTop />
       <Navbar />
 
       <Routes>
