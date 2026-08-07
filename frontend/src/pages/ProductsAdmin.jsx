@@ -1,361 +1,569 @@
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../services/api";
 
 
 function ProductsAdmin() {
 
-  const [categories, setCategories] = useState([]);
-  const [products, setProducts] = useState([]);
 
-  const [editingProduct, setEditingProduct] = useState(null);
+const navigate = useNavigate();
 
 
-  const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    price: "",
-    stock: "",
-    category: "",
-    featured: false,
-  });
+const [categories, setCategories] = useState([]);
 
+const [products, setProducts] = useState([]);
 
-  const [image, setImage] = useState(null);
+const [editingProduct, setEditingProduct] = useState(null);
 
 
+const [formData, setFormData] = useState({
 
-  const fetchProducts = () => {
+name:"",
+description:"",
+price:"",
+stock:"",
+category:"",
+featured:false,
 
-    api
-      .get("products/")
-      .then((res)=>{
-        setProducts(res.data);
-      })
-      .catch((err)=>{
-        console.log(err);
-      });
+});
 
-  };
 
+const [image, setImage] = useState(null);
 
 
-  useEffect(()=>{
 
 
-    api
-    .get("categories/")
-    .then((res)=>{
-      setCategories(res.data);
-    })
-    .catch((err)=>{
-      console.log(err);
-    });
+// Fetch Products
 
+const fetchProducts = ()=>{
 
-    fetchProducts();
 
+api
+.get("products/")
 
-  },[]);
+.then((res)=>{
 
+setProducts(res.data);
 
+})
 
+.catch((err)=>{
 
+console.log(err);
 
-  // Load product into form
+});
 
-  const handleEdit = (product)=>{
 
+};
 
-    setEditingProduct(product);
 
 
-    setFormData({
 
-      name: product.name,
 
-      description: product.description,
+useEffect(()=>{
 
-      price: product.price,
 
-      stock: product.stock,
+api
+.get("categories/")
 
-      category: product.category,
+.then((res)=>{
 
-      featured: product.featured,
+setCategories(res.data);
 
-    });
+})
 
+.catch((err)=>{
 
-    setImage(null);
+console.log(err);
 
+});
 
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
-    });
 
 
-  };
+fetchProducts();
 
 
 
+},[]);
 
 
 
-  const handleChange=(e)=>{
 
 
-    const {
-      name,
-      value,
-      type,
-      checked
 
-    } = e.target;
 
+// Logout
 
+const logout = ()=>{
 
-    setFormData({
 
-      ...formData,
+const confirmLogout =
+window.confirm(
+"Are you sure you want to logout?"
+);
 
-      [name]:
-      type==="checkbox"
-      ? checked
-      : value
 
-    });
+if(confirmLogout){
 
 
-  };
+localStorage.removeItem("access");
 
+localStorage.removeItem("refresh");
 
 
+navigate("/admin/login");
 
 
+}
 
-  const handleSubmit = async(e)=>{
 
+};
 
-    e.preventDefault();
 
 
-    try{
 
 
-      const token =
-      localStorage.getItem("access");
 
 
 
-      const data = new FormData();
+// Edit Product
 
 
+const handleEdit = (product)=>{
 
-      Object.keys(formData).forEach((key)=>{
 
-        data.append(
-          key,
-          formData[key]
-        );
+setEditingProduct(product);
 
-      });
 
 
+setFormData({
 
-      if(image){
+name:product.name,
 
-        data.append(
-          "image",
-          image
-        );
+description:product.description,
 
-      }
+price:product.price,
 
+stock:product.stock,
 
+category:
+product.category?.id || product.category,
 
+featured:product.featured,
 
 
-      if(editingProduct){
+});
 
 
-        await api.patch(
 
-          `products/${editingProduct.id}/`,
+setImage(null);
 
-          data,
 
-          {
 
-            headers:{
+window.scrollTo({
 
-              Authorization:
-              `Bearer ${token}`,
+top:0,
 
-              "Content-Type":
-              "multipart/form-data"
+behavior:"smooth"
 
-            }
+});
 
-          }
 
-        );
+};
 
 
-        alert(
-          "Product updated successfully"
-        );
 
 
 
-      }
-      else{
 
 
-        await api.post(
 
-          "products/",
 
-          data,
+// Input Changes
 
-          {
 
-            headers:{
+const handleChange=(e)=>{
 
-              Authorization:
-              `Bearer ${token}`,
 
-              "Content-Type":
-              "multipart/form-data"
+const {
 
-            }
+name,
 
-          }
+value,
 
-        );
+type,
 
+checked
 
-        alert(
-          "Product added successfully"
-        );
+}=e.target;
 
 
-      }
 
+setFormData({
 
+...formData,
 
 
-      setEditingProduct(null);
+[name]:
 
+type==="checkbox"
+?
+checked
+:
+value,
 
-      setFormData({
 
-        name:"",
-        description:"",
-        price:"",
-        stock:"",
-        category:"",
-        featured:false,
+});
 
-      });
 
+};
 
-      setImage(null);
 
 
-      fetchProducts();
 
 
 
-    }
-    catch(error){
 
 
-      console.log(error);
+// Create / Update Product
 
-      alert(
-        "Failed to save product"
-      );
 
+const handleSubmit = async(e)=>{
 
-    }
 
+e.preventDefault();
 
-  };
 
 
+try{
 
 
+const token =
+localStorage.getItem("access");
 
 
 
+const data = new FormData();
 
 
-  const deleteProduct = async(id)=>{
 
+Object.keys(formData).forEach((key)=>{
 
-    const confirmDelete =
-    window.confirm(
-      "Delete this product?"
-    );
 
+data.append(
 
-    if(!confirmDelete)
-    return;
+key,
 
+formData[key]
 
+);
 
-    try{
 
+});
 
-      const token =
-      localStorage.getItem("access");
 
 
+if(image){
 
-      await api.delete(
 
-        `products/${id}/`,
+data.append(
 
-        {
+"image",
 
-          headers:{
+image
 
-            Authorization:
-            `Bearer ${token}`
+);
 
-          }
 
-        }
+}
 
-      );
 
 
 
-      fetchProducts();
 
 
-      alert(
-        "Product deleted successfully"
-      );
 
+if(editingProduct){
 
-    }
-    catch(error){
 
 
-      console.log(error);
+await api.patch(
 
+`products/${editingProduct.id}/`,
 
-      alert(
-        "Delete failed"
-      );
+data,
 
+{
 
-    }
+headers:{
 
 
-  };
+Authorization:
+
+`Bearer ${token}`,
+
+
+"Content-Type":
+
+"multipart/form-data"
+
+
+}
+
+
+}
+
+
+);
+
+
+
+alert(
+
+"Product updated successfully"
+
+);
+
+
+
+}
+
+else{
+
+
+await api.post(
+
+"products/",
+
+data,
+
+{
+
+headers:{
+
+
+Authorization:
+
+`Bearer ${token}`,
+
+
+"Content-Type":
+
+"multipart/form-data"
+
+
+}
+
+
+}
+
+
+);
+
+
+
+alert(
+
+"Product added successfully"
+
+);
+
+
+}
+
+
+
+
+
+
+
+setEditingProduct(null);
+
+
+
+setFormData({
+
+name:"",
+
+description:"",
+
+price:"",
+
+stock:"",
+
+category:"",
+
+featured:false,
+
+
+});
+
+
+
+setImage(null);
+
+
+
+fetchProducts();
+
+
+
+}
+
+catch(error){
+
+
+console.log(error);
+
+
+alert(
+
+"Failed to save product"
+
+);
+
+
+}
+
+
+
+};
+
+
+
+
+
+
+
+
+
+// Delete Product
+
+
+const deleteProduct = async(id)=>{
+
+
+const confirmDelete =
+
+window.confirm(
+
+"Delete this product?"
+
+);
+
+
+
+if(!confirmDelete)
+
+return;
+
+
+
+
+try{
+
+
+const token =
+
+localStorage.getItem("access");
+
+
+
+await api.delete(
+
+`products/${id}/`,
+
+{
+
+headers:{
+
+
+Authorization:
+
+`Bearer ${token}`
+
+
+}
+
+}
+
+);
+
+
+
+alert(
+
+"Product deleted successfully"
+
+);
+
+
+
+fetchProducts();
+
+
+
+}
+
+catch(error){
+
+
+console.log(error);
+
+
+alert(
+
+"Delete failed"
+
+);
+
+
+}
+
+
+
+};
+
+
+
+
+
+
+
+// Cancel Edit
+
+
+const cancelEdit=()=>{
+
+
+setEditingProduct(null);
+
+
+
+setFormData({
+
+name:"",
+
+description:"",
+
+price:"",
+
+stock:"",
+
+category:"",
+
+featured:false,
+
+
+});
+
+
+setImage(null);
+
+
+};
+
+
 
 
 
@@ -364,15 +572,89 @@ function ProductsAdmin() {
 
 return (
 
-<div className="space-y-12">
+
+<div className="min-h-screen bg-gray-100 p-6 md:p-10">
+
+
+
+
+
+{/* Header */}
+
+<div className="flex flex-col md:flex-row justify-between items-center mb-8">
+
+
+<div>
+
+
+<h1 className="text-3xl md:text-4xl font-bold">
+
+Product Management
+
+</h1>
+
+
+<p className="text-gray-600 mt-2">
+
+Create, edit and manage automobile products
+
+</p>
+
+
+</div>
+
+
+
+<button
+
+onClick={logout}
+
+className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold mt-4 md:mt-0"
+
+>
+
+Logout
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<Link
+
+to="/admin/dashboard"
+
+className="inline-block bg-gray-800 text-white px-5 py-3 rounded-lg mb-8 hover:bg-gray-900"
+
+>
+
+← Back to Admin Menu
+
+</Link>
+
+
+
+
+
+
+
 
 
 {/* FORM */}
 
-<div className="bg-white shadow-lg rounded-xl p-8">
+
+<div className="bg-white rounded-xl shadow-lg p-8 mb-12">
 
 
-<h1 className="text-4xl font-bold mb-8">
+<h2 className="text-2xl font-bold mb-6">
 
 {editingProduct
 ?
@@ -380,13 +662,16 @@ return (
 :
 "Add Product"}
 
-</h1>
+</h2>
 
 
 
 <form
+
 onSubmit={handleSubmit}
-className="space-y-6"
+
+className="space-y-5"
+
 >
 
 
@@ -403,9 +688,13 @@ value={formData.name}
 
 onChange={handleChange}
 
-className="w-full border p-3 rounded"
+className="w-full border p-3 rounded-lg"
+
+required
 
 />
+
+
 
 
 
@@ -415,15 +704,20 @@ name="description"
 
 placeholder="Description"
 
+rows="5"
+
 value={formData.description}
 
 onChange={handleChange}
 
-rows="5"
+className="w-full border p-3 rounded-lg"
 
-className="w-full border p-3 rounded"
+required
 
 />
+
+
+
 
 
 
@@ -436,18 +730,21 @@ value={formData.category}
 
 onChange={handleChange}
 
-className="w-full border p-3 rounded"
+className="w-full border p-3 rounded-lg"
+
+required
 
 >
 
 
 <option value="">
+
 Select Category
+
 </option>
 
 
-{
-categories.map((category)=>(
+{categories.map((category)=>(
 
 
 <option
@@ -463,12 +760,13 @@ value={category.id}
 </option>
 
 
-))
-
-}
+))}
 
 
 </select>
+
+
+
 
 
 
@@ -479,15 +777,21 @@ type="number"
 
 name="price"
 
+placeholder="Price"
+
 value={formData.price}
 
 onChange={handleChange}
 
-placeholder="Price"
+className="w-full border p-3 rounded-lg"
 
-className="w-full border p-3 rounded"
+required
 
 />
+
+
+
+
 
 
 
@@ -497,15 +801,21 @@ type="number"
 
 name="stock"
 
+placeholder="Stock"
+
 value={formData.stock}
 
 onChange={handleChange}
 
-placeholder="Stock"
+className="w-full border p-3 rounded-lg"
 
-className="w-full border p-3 rounded"
+required
 
 />
+
+
+
+
 
 
 
@@ -516,12 +826,17 @@ type="file"
 accept="image/*"
 
 onChange={(e)=>
+
 setImage(e.target.files[0])
+
 }
 
-className="w-full border p-3 rounded"
+className="w-full border p-3 rounded-lg"
 
 />
+
+
+
 
 
 
@@ -548,22 +863,53 @@ Featured Product
 
 
 
+
+
+
+
+<div className="flex gap-4">
+
+
 <button
 
-className="bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-3 rounded-lg font-semibold"
+type="submit"
+
+className="bg-yellow-500 hover:bg-yellow-600 px-6 py-3 rounded-lg font-bold"
 
 >
 
-{
-editingProduct
+{editingProduct
 ?
 "Update Product"
 :
-"Save Product"
+"Save Product"}
+
+</button>
+
+
+
+
+{editingProduct &&
+
+<button
+
+type="button"
+
+onClick={cancelEdit}
+
+className="bg-gray-500 text-white px-6 py-3 rounded-lg"
+
+>
+
+Cancel Edit
+
+</button>
+
 }
 
 
-</button>
+
+</div>
 
 
 
@@ -577,51 +923,50 @@ editingProduct
 
 
 
-{/* PRODUCT TABLE */}
-
-<div>
-
-
-<h2 className="text-3xl font-bold mb-6">
-
-Product Management
-
-</h2>
 
 
 
-<div className="overflow-x-auto bg-white rounded-xl shadow-lg">
+
+{/* Products Table */}
+
+
+<div className="bg-white rounded-xl shadow-lg overflow-x-auto">
 
 
 <table className="w-full">
 
 
-<thead>
+<thead className="bg-gray-100">
 
-<tr className="bg-gray-100">
 
-<th className="p-4">
+<tr>
+
+
+<th className="p-4 text-left">
+
 Image
+
 </th>
 
-<th className="p-4">
-Product
+
+<th className="p-4 text-left">
+
+Name
+
 </th>
 
-<th className="p-4">
+
+<th className="p-4 text-left">
+
 Price
+
 </th>
 
-<th className="p-4">
-Stock
-</th>
 
-<th className="p-4">
-Featured
-</th>
+<th className="p-4 text-left">
 
-<th className="p-4">
 Actions
+
 </th>
 
 
@@ -632,16 +977,20 @@ Actions
 
 
 
+
+
 <tbody>
 
 
-{
-products.map((product)=>(
+{products.map((product)=>(
 
 
 <tr
+
 key={product.id}
+
 className="border-t"
+
 >
 
 
@@ -654,12 +1003,13 @@ src={product.image}
 
 alt={product.name}
 
-className="w-20 h-20 rounded-lg object-cover"
+className="w-20 h-20 object-cover rounded-lg"
 
 />
 
 
 </td>
+
 
 
 
@@ -671,39 +1021,13 @@ className="w-20 h-20 rounded-lg object-cover"
 
 
 
+
 <td className="p-4">
 
 GH₵ {product.price}
 
 </td>
 
-
-
-<td className="p-4">
-
-{product.stock}
-
-</td>
-
-
-
-<td className="p-4">
-
-
-{
-product.featured
-?
-<span className="bg-green-100 text-green-700 px-3 py-1 rounded-full">
-Yes
-</span>
-:
-<span className="bg-red-100 text-red-700 px-3 py-1 rounded-full">
-No
-</span>
-}
-
-
-</td>
 
 
 
@@ -714,7 +1038,7 @@ No
 
 onClick={()=>handleEdit(product)}
 
-className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+className="bg-blue-600 text-white px-4 py-2 rounded"
 
 >
 
@@ -729,7 +1053,7 @@ Edit
 
 onClick={()=>deleteProduct(product.id)}
 
-className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+className="bg-red-600 text-white px-4 py-2 rounded"
 
 >
 
@@ -738,26 +1062,21 @@ Delete
 </button>
 
 
-
 </td>
+
 
 
 </tr>
 
 
-))
+))}
 
-
-}
 
 
 </tbody>
 
 
 </table>
-
-
-</div>
 
 
 </div>
