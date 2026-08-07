@@ -2,7 +2,7 @@ import { FaCarSide } from "react-icons/fa";
 
 function Hero() {
   return (
-    <section className="relative w-full h-[100vh] overflow-hidden">
+    <section className="relative h-[75vh] sm:h-[85vh] md:h-screen overflow-hidden bg-black">
 
       {/* Background Video */}
       <video
@@ -11,7 +11,7 @@ function Hero() {
         loop
         playsInline
         preload="auto"
-        className="absolute w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover object-center"
       >
         <source
           src="/Video/video.mp4"

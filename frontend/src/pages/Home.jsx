@@ -92,6 +92,126 @@ function Home() {
         </div>
       </section>
 
+      {/* Featured Batteries Section */}
+<section className="max-w-7xl mx-auto px-4 py-16">
+
+  <div className="text-center mb-12">
+
+    <span className="bg-yellow-500 text-black px-4 py-2 rounded-full font-semibold text-sm">
+      Featured Batteries
+    </span>
+
+    <h2 className="text-3xl md:text-4xl font-bold mt-4">
+      Adomako Agyenkwa Enterprise Batteries
+    </h2>
+
+    <p className="text-gray-600 mt-4 max-w-3xl mx-auto">
+      Premium quality Peniel View Batteries imported from Korea.
+      Available in both 11-Plate and 15-Plate variants for reliable
+      vehicle performance, durability and long-lasting power.
+    </p>
+
+  </div>
+
+  <div className="grid md:grid-cols-2 gap-8">
+
+    {/* 11 Plates Battery */}
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition duration-300">
+
+      <div className="relative bg-gray-50 p-6 flex items-center justify-center h-80">
+
+        <span className="absolute top-4 left-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+          ORIGINAL BATTERY
+        </span>
+
+        <img
+          src="/images/battery-11plates.jpeg"
+          alt="Peniel View Battery 11 Plates"
+          className="max-h-full max-w-full object-contain rounded-2xl"
+        />
+
+      </div>
+
+      <div className="p-6 text-center">
+
+        <h3 className="text-2xl font-bold mb-2">
+          Peniel View Battery – 11 Plates
+        </h3>
+
+        <p className="text-gray-600 mb-4">
+          Genuine Korean-made Peniel View Battery engineered for
+          dependable starting power, durability and excellent
+          performance under varying driving conditions.
+        </p>
+
+        <div className="text-3xl font-bold text-yellow-600 mb-6">
+          GH₵ 850
+        </div>
+
+        <a
+          href="https://wa.me/233243160227?text=Hello Adomako Agyenkwa Enterprise, I am interested in the Peniel View Battery - 11 Plates"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-xl font-semibold transition duration-300"
+        >
+          Inquire on WhatsApp
+        </a>
+
+      </div>
+
+    </div>
+
+    {/* 15  Plates Battery */}
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition duration-300">
+
+      <div className="relative bg-gray-50 p-6 flex items-center justify-center h-80">
+
+        <span className="absolute top-4 left-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+          ORIGINAL BATTERY
+        </span>
+
+        <img
+          src="/images/battery-15plates.jpeg"
+          alt="Peniel View Battery 15 Plates"
+          className="max-h-full max-w-full object-contain rounded-2xl"
+        />
+
+      </div>
+
+      <div className="p-6 text-center">
+
+        <h3 className="text-2xl font-bold mb-2">
+          Peniel View Battery – 15 Plates
+        </h3>
+
+        <p className="text-gray-600 mb-4">
+          High-capacity Korean-made Peniel View Battery designed
+          for enhanced power delivery, longer lifespan and superior
+          vehicle performance.
+        </p>
+
+        <div className="text-3xl font-bold text-yellow-600 mb-6">
+          GH₵ 1,100
+        </div>
+
+        <a
+          href="https://wa.me/233243160227?text=Hello Adomako Agyenkwa Enterprise, I am interested in the Peniel View Battery - 15 Plates"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-xl font-semibold transition duration-300"
+        >
+          Inquire on WhatsApp
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
       {/* Products Section */}
       <section className="max-w-7xl mx-auto px-4 py-20">
         <div className="text-center mb-12">
