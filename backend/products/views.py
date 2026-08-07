@@ -23,6 +23,14 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
 from rest_framework.filters import OrderingFilter
 
+class HealthCheckView(APIView):
+
+    permission_classes = []
+
+    def get(self, request):
+        return Response({
+            "status": "ok"
+        })
 
 class ProductViewSet(viewsets.ModelViewSet):
 
