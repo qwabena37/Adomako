@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-
+from rest_framework.permissions import AllowAny
 from .serializers import (
     ProductSerializer,
     CategorySerializer,
@@ -19,12 +19,53 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser
 from rest_framework.permissions import SAFE_METHODS
 from rest_framework.permissions import BasePermission
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
+from rest_framework.filters import OrderingFilter
+
 
 class ProductViewSet(viewsets.ModelViewSet):
 
-    queryset = Product.objects.all()
+    queryset = Product.objects.select_related(
+        "category"
+    ).all()
+
     serializer_class = ProductSerializer
-    permission_classes = [IsAdminOrReadOnly]
+
+    permission_classes = [
+        IsAdminOrReadOnly
+    ]
+
+    parser_classes = (
+        MultiPartParser,
+        FormParser,
+    )
+
+    filter_backends = [
+        DjangoFilterBackend,
+        SearchFilter,
+        OrderingFilter,
+    ]
+
+    search_fields = [
+        "name",
+        "description",
+    ]
+
+    filterset_fields = [
+        "category",
+        "featured",
+    ]
+
+    ordering_fields = [
+        "created_at",
+        "price",
+    ]
+
+    def get_serializer_context(self):
+        return {
+            "request": self.request
+        }
 
     @action(
         detail=False,
@@ -35,14 +76,12 @@ class ProductViewSet(viewsets.ModelViewSet):
 
         products = Product.objects.filter(
             featured=True
-        )[:10]
+        ).order_by("-created_at")[:10]
 
         serializer = ProductSerializer(
             products,
             many=True,
-            context={
-                "request": request
-            }
+            context={"request": request}
         )
 
         return Response(serializer.data)
@@ -91,7 +130,7 @@ class InquiryViewSet(viewsets.ModelViewSet):
 
 class CreateInquiryView(APIView):
 
-    permission_classes = []
+    permission_classes = [AllowAny]
 
     def post(self, request):
 
@@ -123,10 +162,16 @@ class DashboardAPIView(APIView):
 
 class CategoryViewSet(viewsets.ModelViewSet):
 
-    queryset = Category.objects.all()
+    queryset = Category.objects.order_by("name")
 
     serializer_class = CategorySerializer
 
     permission_classes = [
         IsAdminOrReadOnly
     ]
+
+    filter_backends = [
+    DjangoFilterBackend,
+    SearchFilter,
+    OrderingFilter,
+]
